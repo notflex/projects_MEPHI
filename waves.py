@@ -4,10 +4,10 @@ from matplotlib.animation import FuncAnimation
 
 
 def initial_conditions1():
-    u0 = lambda x, t: t + x ** 2 + np.arcsin(t * (x - 1) / 2)  # exact solution
-    phi = lambda x: x ** 2  # first initial condition, u(x, 0)
-    phi2 = lambda x: 2  # second derivative of phi(x)
-    psi = lambda x: (x + 1) / 2  # second initial condition, u_t(x, 0)
+    u0 = lambda x, t: t + x ** 2 + np.arcsin(t * (x - 1) / 2)  
+    phi = lambda x: x ** 2  
+    phi2 = lambda x: 2  
+    psi = lambda x: (x + 1) / 2  
     f = lambda x, t: -1 + ((t * ((x - 1) ** 3) - (t ** 3) * (x - 1)) / ((4 - (t ** 2) * ((x - 1) ** 2)) ** (3 / 2)))
     alpha = np.array([1, 1])
     beta = np.array([0, 2])
@@ -16,10 +16,10 @@ def initial_conditions1():
 
 
 def initial_conditions2():
-    u0 = lambda x, t: 0  # exact solution
-    phi = lambda x: 0  # first initial condition, u(x, 0)
-    phi2 = lambda x: 0  # second derivative of phi(x)
-    psi = lambda x:0  # second initial condition, u_t(x, 0)
+    u0 = lambda x, t: 0  
+    phi = lambda x: 0  
+    phi2 = lambda x: 0  
+    psi = lambda x:0  
     f = lambda x, t: 0
     alpha = np.array([1, 1])
     beta = np.array([0, 0])
@@ -28,10 +28,10 @@ def initial_conditions2():
 
 
 def initial_conditions3():
-    u0 = lambda x, t: 0 # exact solution
-    phi = lambda x: 0  # first initial condition, u(x, 0)
-    phi2 = lambda x: 0  # second derivative of phi(x)
-    psi = lambda x: 0  # second initial condition, u_t(x, 0)
+    u0 = lambda x, t: 0 
+    phi = lambda x: 0  
+    phi2 = lambda x: 0  
+    psi = lambda x: 0  
     f = lambda x, t: 0
     alpha = np.array([1, 1])
     beta = np.array([0, 0])
@@ -41,10 +41,10 @@ def initial_conditions3():
 
 
 def initial_conditions4():
-    u0 = lambda x, t: 0  # exact solution
-    phi = lambda x: np.array(list(map(lambda z: 3*z if (z < 0.5) else 3. - 3 * z, x)))  # first initial condition, u(x, 0)
-    phi2 = lambda x: 0  # second derivative of phi(x)
-    psi = lambda x: 0  # second initial condition, u_t(x, 0)
+    u0 = lambda x, t: 0 
+    phi = lambda x: np.array(list(map(lambda z: 3*z if (z < 0.5) else 3. - 3 * z, x)))  
+    phi2 = lambda x: 0  
+    psi = lambda x: 0  
     f = lambda x, t: 0
     alpha = np.array([1, 1])
     beta = np.array([0, 0])
@@ -54,11 +54,11 @@ def initial_conditions4():
 
 
 def initial_conditions5():
-    u0 = lambda x, t: 0  # exact solution
-    phi = lambda x: 2*np.sin(2*np.pi*x/(1/3))  # first initial condition, u(x, 0)
-    phi2 = lambda x: 0  # second derivative of phi(x)
-    psi = lambda x: 0  # second initial condition, u_t(x, 0)
-    # u_tt = a**2 * u_xx + f(x, t)
+    u0 = lambda x, t: 0 
+    phi = lambda x: 2*np.sin(2*np.pi*x/(1/3)) 
+    phi2 = lambda x: 0  
+    psi = lambda x: 0  
+    
     f = lambda x, t: 0
     alpha = np.array([1, 1])
     beta = np.array([0, 0])
@@ -125,7 +125,7 @@ def animation():
     t_min = 0.
     t_max = 40.
     h = 0.01
-    N = int((x_max - x_min) // h)  # number of points
+    N = int((x_max - x_min) // h)  
     x_range = np.linspace(x_min, x_max, N)
     C = 1.
     a = np.sqrt(1/2)
@@ -200,9 +200,6 @@ def order_of_approximation():
             u[1] = u[2]
             u[2] = next_layer(u[0:2], f, alpha, beta, gamma, a, h, tau, t)
             error[i] = max(error[i], np.max(np.abs(u[2] - u0(x_range, t))))
-
-    #h_range = np.log10(h_range)
-    #error = np.log10(error)
 
     plt.suptitle('Зависимость логарифма абсолютной погрешности от логарифма шага интегрирования')
     plt.subplot(1, 1, 1)
